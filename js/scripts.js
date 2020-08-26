@@ -5,6 +5,8 @@
 //                      number of chances (integer) is set to starting value
 const wordArray = [ "elephant", "automobile", "vegetable", "waterfall", "elementary", "pseudocode", "pharmacy", "thunder" ];
 
+const previousGuesses = [];
+
 let guessChances = 6;
 
 // Citation:
@@ -41,6 +43,17 @@ chancesSPAN.textContent = `${ guessChances }`;
 
 // Add it the HTML
 chances.appendChild( chancesSPAN );
+
+
+// Where do we want to put it?
+const prevGuesses = document.getElementById( 'previousGuesses' );
+
+// What do we want to put there?
+let preGuessesSPAN = document.createElement( 'SPAN' );
+preGuessesSPAN.textContent = `${ previousGuesses }`;
+
+// Add it the HTML
+prevGuesses.appendChild( preGuessesSPAN );
 
 
 // User enters a letter letterGuess
