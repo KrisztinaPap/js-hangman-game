@@ -25,7 +25,7 @@
 // - previousGuesses = [];
 // - randomNumber (to select a random secretWord from the wordArray)
 // - secretWord = ""; (string, one of the words from wordArray)
-// - secretWordLength (integer)
+// - secretWordUnderscores = secretWordLength * underscores;
 // - underscoreNumber (integer - the number of underscores left in the secretWord)
 // - guessChances = 6 (integer that counts down)
 

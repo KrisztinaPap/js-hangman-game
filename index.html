@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hangman Game</title>
 
     <!-- Normalize.css -->
     <link rel="stylesheet" href="css/normalize.css">
@@ -13,9 +13,18 @@
     <script src="js/scripts.js" defer></script>
 </head>
 <body>
-    <header></header>
+    <header>
+        <h1>Hangman Game</h1>
+    </header>
 
-    <main></main>
+    <main>
+        <p>Enter a guess to begin.</p>
+        <form id="guess-form" action="#">
+            <label for="user-guess">Enter a letter:</label><br>
+            <input type="text" id="user-guess" name="user-guess"><br><br>
+            <input type="submit" value="Guess">
+        </form>
+    </main>
     
     <footer>&copy; Krisztina Pap, 2020</footer>
 </body>
