@@ -23,6 +23,7 @@ for ( let i = 0; i < secretWord.length; i++ ) {
     secretWordUnderscore += "_";
 };
 
+// Underscores displayed for each letter in the secretWord
 // Where do we want to put it?
 const UnderscoreSpot = document.getElementById( 'secretWordUnderscoreSpot' );
 
@@ -33,7 +34,7 @@ underscoreSPAN.textContent = `${ secretWordUnderscore }`;
 // Add it the HTML
 UnderscoreSpot.appendChild( underscoreSPAN );
 
-
+// Number of chances remaining
 // Where do we want to put it?
 const chances = document.getElementById( 'guessChances' );
 
@@ -44,7 +45,7 @@ chancesSPAN.textContent = `${ guessChances }`;
 // Add it the HTML
 chances.appendChild( chancesSPAN );
 
-
+// Previously guessed letter list
 // Where do we want to put it?
 const prevGuesses = document.getElementById( 'previousGuesses' );
 
