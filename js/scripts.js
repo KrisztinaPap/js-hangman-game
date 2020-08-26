@@ -27,7 +27,21 @@ const UnderscoreSpot = document.getElementById( 'secretWordUnderscoreSpot' );
 // What do we want to put there?
 let underscoreSPAN = document.createElement( 'SPAN' );
 underscoreSPAN.textContent = `${ secretWordUnderscore }`;
+
+// Add it the HTML
 UnderscoreSpot.appendChild( underscoreSPAN );
+
+
+// Where do we want to put it?
+const chances = document.getElementById( 'guessChances' );
+
+// What do we want to put there?
+let chancesSPAN = document.createElement( 'SPAN' );
+chancesSPAN.textContent = `${ guessChances }`;
+
+// Add it the HTML
+chances.appendChild( chancesSPAN );
+
 
 // User enters a letter letterGuess
 
