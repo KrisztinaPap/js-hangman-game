@@ -20,7 +20,14 @@ let secretWordUnderscore = "";
 for ( let i = 0; i < secretWord.length; i++ ) {
     secretWordUnderscore += "_";
 };
-console.log(secretWordUnderscore);
+
+// Where do we want to put it?
+const UnderscoreSpot = document.getElementById( 'secretWordUnderscoreSpot' );
+
+// What do we want to put there?
+let underscoreSPAN = document.createElement( 'SPAN' );
+underscoreSPAN.textContent = `${ secretWordUnderscore }`;
+UnderscoreSpot.appendChild( underscoreSPAN );
 
 // User enters a letter letterGuess
 
