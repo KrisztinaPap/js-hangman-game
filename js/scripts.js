@@ -32,6 +32,11 @@ displayNumberOfChances( guessChances );
 
 displayPreviousGuesses( previousGuesses );
 
+
+// Citation:
+    //      https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript#1431113
+    // The below code block creates a custom function to replace a specific character in a target word with another specific character
+    // Shout-out to Warren Uhrich for his guidance!
 function replaceAt(target, index, replacement) {
     return target.substr(0, index) + replacement + target.substr(index + replacement.length);
 }; 
@@ -95,11 +100,10 @@ guessForm.addEventListener( "submit", ( event ) => {
         {
             if ( secretWord[i] === letterGuess )
             {
-               
-                //secretWordUnderscore[i] = letterGuess; 
-                //secretWordUnderscore.replace( [i], letterGuess );
-                //let newString = secretWordUnderscore;
-                // = newString.replaceAt(  );
+                // Citation:
+                //      https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript#1431113
+                // The below code uses a custom function to replace the underscore in secretWordUnderScore at the matching index
+                // Shout-out to Warren Uhrich for his guidance!
                 secretWordUnderscore = replaceAt( secretWordUnderscore, Number([i]), letterGuess );
                 console.log( secretWordUnderscore );
             } 
