@@ -40,7 +40,7 @@ guessForm.addEventListener( "submit", ( event ) => {
             displayUpdatedWordToGuess( secretWordUnderscore);
             if ( !secretWordUnderscore.includes("_") )
             {
-                alert("You guessed all the letters!");
+                playAgain("Congratulation! You guessed all the letters!");
             }
         }
         else
@@ -54,7 +54,7 @@ guessForm.addEventListener( "submit", ( event ) => {
             
             if ( guessChances == 0 )
             {
-                alert("You are out of chances!");
+                playAgain("Sorry, you lost! You ran out of chances...");
             }
            
         }
@@ -63,6 +63,17 @@ guessForm.addEventListener( "submit", ( event ) => {
 }); 
 
 
+function playAgain( results ) {
+    let play = window.confirm(`${results} Do you want to play again?`);
+    if ( play == true )
+    {
+        location.reload(); 
+    }
+    else
+    {
+        alert("Thanks for playing! See you soon!");
+    }
+};
 
 function findRandomNumber (min, max) {
     // Citation:
@@ -161,23 +172,13 @@ displayPreviousGuesses( previousGuesses );
 
 
 
-// Breakout conditions   -  If number of underscores in secretWord == 0 (WIN)
-//                          If chances == 0 (LOSE)
 
 // Breakout action      -   Alert (win) OR alert (lose)
 
 // Ask if user wants to play again
             
+// Check for duplicate entries
 
-// Variables planned:
-// - letterGuess = ""; string or char???? (User input (form, text)) 
-// - wordArray = [];
-// - previousGuesses = [];
-// - randomNumber (to select a random secretWord from the wordArray)
-// - secretWord = ""; (string, one of the words from wordArray)
-// - secretWordUnderscore = secretWordLength * underscores;
-// - underscoreNumber (integer - the number of underscores left in the secretWord)
-// - guessChances = 6 (integer that counts down)
+// add CSS
 
-// - win alert message
-// - lose alert message
+// Add pictures
