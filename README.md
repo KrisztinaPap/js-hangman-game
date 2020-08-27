@@ -16,6 +16,7 @@ August 26, 2020
 - A huge shout-out to Zhen Liu for his assistance with the user input code block!
 - A huge shout-out to Warren Uhrich for his guidance with the custom replaceAt function! 
 - [StackOverflow: How do I replace a character at a particular index in JavaScript?](https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript#1431113)
+- [Tutorials Collection: 2 Demos of JavaScript Confirm Alert](https://www.tutorialscollection.com/faq/javascript-confirm-how-to-display-confirm-javascript-alert-with-examples/)
 
 
 ## Trello Project Board

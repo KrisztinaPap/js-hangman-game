@@ -62,7 +62,9 @@ guessForm.addEventListener( "submit", ( event ) => {
     } while ( ( guessChances > 0 ) || secretWordUnderscore.includes("_") );
 }); 
 
-
+// Citation:
+//      https://www.tutorialscollection.com/faq/javascript-confirm-how-to-display-confirm-javascript-alert-with-examples/
+//      The below block of code asks the user whether they want to play again. If they choose yes, the page will reload. If they choose no, it will say thank you. 
 function playAgain( results ) {
     let play = window.confirm(`${results} Do you want to play again?`);
     if ( play == true )
