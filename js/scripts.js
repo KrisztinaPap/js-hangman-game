@@ -6,7 +6,6 @@ let guessChances = 6;
 
 let randomNumber = findRandomNumber( 0, wordArray.length );
 let secretWord = wordArray[randomNumber].toUpperCase();
-console.log(secretWord);
 let secretWordUnderscore = "";
 
 for ( let i = 0; i < secretWord.length; i++ ) {
@@ -46,14 +45,12 @@ guessForm.addEventListener( "submit", ( event ) => {
                 }
             }
             else 
-            {
-                console.log("That letter is not in the secret word!");
+            {       
                 previousGuesses.push( letterGuess );
                 guessChances--;
                 updateNumberOfChances ( guessChances );
                 displayHangmanPicture( guessChances );
                 displayPreviousGuesses ( previousGuesses );
-                console.log( previousGuesses );
                 
                 if ( guessChances == 0 )
                 {

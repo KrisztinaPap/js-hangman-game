@@ -1,0 +1,53 @@
+html {
+    background-image: url("/images/notebook-paper.jpg");
+    background-size: cover;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
+h1 {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+dl {
+    text-align: left;
+    margin-left: 20%;
+}
+
+dd {
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+}
+
+dt {
+    font-weight: bold;
+    padding-top: 1.6rem;
+    padding-bottom: 1rem;
+}
+
+#hangmanSpot {
+    margin-top: 1rem;
+    border: 2px black solid;
+    border-radius: 6px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#previousGuesses {
+    color: red;
+}
+
+@media screen and ( min-width: 600px ) {
+    
+    body {
+        width: 600px;
+        margin: auto;
+    }
+}

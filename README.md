@@ -8,7 +8,7 @@ To practice HTML, CSS, and JavaScript (arrays, loops, and DOM manipulation)
 Krisztina Pap
 
 ## Last Edit
-August 26, 2020
+August 27, 2020
 
 ## Resources
 - [Normalize.css](https://cssreset.com/scripts/normalize-css/)
