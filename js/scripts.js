@@ -42,10 +42,25 @@ function displayWordToGuess( secretWordUnderscore ) {
 
     // What do we want to put there?
     let underscoreSPAN = document.createElement( 'SPAN' );
+    underscoreSPAN.id = "underscoreSPANId";
     underscoreSPAN.textContent = `${ secretWordUnderscore }`;
 
     // Add it the HTML
     UnderscoreSpot.appendChild( underscoreSPAN );
+}
+
+function displayUpdatedWordToGuess( secretWordUnderscore) {
+    // Underscores displayed for each letter in the secretWord
+    // Where do we want to put it?
+    const UnderscoreSpot = document.getElementById( 'secretWordUnderscoreSpot' );
+
+    // What do we want to put there?
+    let underscoreSPAN = document.getElementById( "underscoreSPANId" );
+    underscoreSPAN.textContent = `${ secretWordUnderscore }`;
+
+    // Add it the HTML
+    UnderscoreSpot.appendChild( underscoreSPAN );
+
 }
 
 
@@ -76,19 +91,9 @@ function displayPreviousGuesses ( previousGuesses ) {
     {
         prevGuessesSPAN.textContent = `${ previousGuesses[i] } `;
     }
-    
-
     // Add it the HTML
     prevGuesses.appendChild( prevGuessesSPAN );    
 };
-
-/* function addNewPreviousGuess( previousGuesses ) {
-    console.log("Additional prevguess!");
-    let prevGuessesSPAN = document.getElementById( "guessSPAN" );
-    prevGuessesSPAN.textContent = `${ previousGuesses }`;
-    prevGuesses.appendChild( prevGuessesSPAN );
-}; */
-
 
 // User enters a letter letterGuess
 let guessForm = document.getElementById( "guess-form" );
@@ -111,9 +116,10 @@ guessForm.addEventListener( "submit", ( event ) => {
                 // The below code uses a custom function to replace the underscore in secretWordUnderScore at the matching index
                 // Shout-out to Warren Uhrich for his guidance!
                 secretWordUnderscore = replaceAt( secretWordUnderscore, Number([i]), letterGuess );
-                console.log( secretWordUnderscore );
+                
             } 
         }   
+        displayUpdatedWordToGuess( secretWordUnderscore);
     }
     else
     {
