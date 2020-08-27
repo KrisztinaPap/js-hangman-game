@@ -1,22 +1,8 @@
-// Pseudo code - to be deleted when program is finished
-
-// on document load -   secretWord is chosen randomly from wordArray
-//                      Underscores are displayed to represent length of SecretWord
-//                      number of chances (integer) is set to starting value
 const wordArray = [ "elephant", "automobile", "vegetable", "waterfall", "elementary", "pseudocode", "pharmacy", "thunder" ];
 
 const previousGuesses = [];
-
 let guessChances = 6;
 
-
-
-// Citation:
-//      https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
-//      The below function works as follows: Math.random() provides a random number between 0 and 1. It then multiplies that by the number of array items and rounds it down to get a number between 0 and the number of items in the array.
-function findRandomNumber (min, max) {
-    return Math.floor(Math.random() * (max-min));
-}
 let randomNumber = findRandomNumber( 0, wordArray.length );
 let secretWord = wordArray[randomNumber].toUpperCase();
 console.log(secretWord);
@@ -33,11 +19,19 @@ displayNumberOfChances( guessChances );
 displayPreviousGuesses( previousGuesses );
 
 
-// Citation:
+
+function findRandomNumber (min, max) {
+    // Citation:
+    //      https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
+    //      The below function works as follows: Math.random() provides a random number between 0 and 1. It then multiplies that by the number of array items and rounds it down to get a number between 0 and the number of items in the array.
+    return Math.floor(Math.random() * (max-min));
+}
+
+function replaceAt(target, index, replacement) {
+    // Citation:
     //      https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript#1431113
     // The below code block creates a custom function to replace a specific character in a target word with another specific character
     // Shout-out to Warren Uhrich for his guidance!
-function replaceAt(target, index, replacement) {
     return target.substr(0, index) + replacement + target.substr(index + replacement.length);
 }; 
 
@@ -73,14 +67,28 @@ function displayPreviousGuesses ( previousGuesses ) {
     // Previously guessed letter list
     // Where do we want to put it?
     const prevGuesses = document.getElementById( 'previousGuesses' );
-
-    // What do we want to put there?
+    
     let prevGuessesSPAN = document.createElement( 'SPAN' );
-    prevGuessesSPAN.textContent = `${ previousGuesses }`;
+    prevGuessesSPAN.id = "guessSPAN";
+   
+    // What do we want to put there?
+    for ( let i = 0; i < previousGuesses.length; i++ )
+    {
+        prevGuessesSPAN.textContent = `${ previousGuesses[i] } `;
+    }
+    
 
     // Add it the HTML
-    prevGuesses.appendChild( prevGuessesSPAN );
+    prevGuesses.appendChild( prevGuessesSPAN );    
 };
+
+/* function addNewPreviousGuess( previousGuesses ) {
+    console.log("Additional prevguess!");
+    let prevGuessesSPAN = document.getElementById( "guessSPAN" );
+    prevGuessesSPAN.textContent = `${ previousGuesses }`;
+    prevGuesses.appendChild( prevGuessesSPAN );
+}; */
+
 
 // User enters a letter letterGuess
 let guessForm = document.getElementById( "guess-form" );
@@ -92,8 +100,6 @@ guessForm.addEventListener( "submit", ( event ) => {
     let letterGuess = userInput;
 
     // If secretWord contains letterGuess, letter is displayed instead of underscores
-
-
     if ( secretWord.includes( letterGuess ))
     {
         for ( let i = 0; i < secretWord.length; i++ )
@@ -113,7 +119,7 @@ guessForm.addEventListener( "submit", ( event ) => {
     {
         console.log("That letter is not in the secret word!");
         previousGuesses.push( letterGuess );
-        displayPreviousGuesses( previousGuesses );
+        displayPreviousGuesses ( previousGuesses );
         console.log( previousGuesses );
     }
     return secretWordUnderscore;
