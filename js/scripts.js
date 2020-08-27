@@ -1,6 +1,7 @@
 const wordArray = [ "elephant", "automobile", "vegetable", "waterfall", "elementary", "pseudocode", "pharmacy", "thunder" ];
 
 const previousGuesses = [];
+const previousGoodGuesses = [];
 let guessChances = 6;
 
 let randomNumber = findRandomNumber( 0, wordArray.length );
@@ -21,47 +22,53 @@ guessForm.addEventListener( "submit", ( event ) => {
     let userInput = document.getElementById( "user-guess" ).value.toUpperCase();
     let letterGuess = userInput;
 
-    do {
-        // If secretWord contains letterGuess, letter is displayed instead of underscores
-        if ( secretWord.includes( letterGuess ))
-        {
-            for ( let i = 0; i < secretWord.length; i++ )
+    if ( ( !previousGoodGuesses.includes( letterGuess )) && ( !previousGuesses.includes( letterGuess )) ) {
+        do {
+            // If secretWord contains letterGuess, letter is displayed instead of underscores
+            if ( secretWord.includes( letterGuess ))
             {
-                if ( secretWord[i] === letterGuess )
+                for ( let i = 0; i < secretWord.length; i++ )
                 {
-                    // Citation:
-                    //      https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript#1431113
-                    // The below code uses a custom function to replace the underscore in secretWordUnderScore at the matching index
-                    // Shout-out to Warren Uhrich for his guidance!
-                    secretWordUnderscore = replaceAt( secretWordUnderscore, Number([i]), letterGuess );
-                    
-                } 
-            }   
-            displayUpdatedWordToGuess( secretWordUnderscore);
-            if ( !secretWordUnderscore.includes("_") )
-            {
-                playAgain("Congratulation! You guessed all the letters!");
+                    if ( secretWord[i] === letterGuess )
+                    {
+                        // Citation:
+                        //      https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript#1431113
+                        // The below code uses a custom function to replace the underscore in secretWordUnderScore at the matching index
+                        // Shout-out to Warren Uhrich for his guidance!
+                        secretWordUnderscore = replaceAt( secretWordUnderscore, Number([i]), letterGuess );
+                        previousGoodGuesses.push( letterGuess );
+                    } 
+                }   
+                displayUpdatedWordToGuess( secretWordUnderscore);
+                if ( !secretWordUnderscore.includes("_") )
+                {
+                    playAgain("Congratulation! You guessed all the letters!");
+                }
             }
-        }
-        else
-        {
-            console.log("That letter is not in the secret word!");
-            previousGuesses.push( letterGuess );
-            guessChances--;
-            updateNumberOfChances ( guessChances );
-            displayPreviousGuesses ( previousGuesses );
-            console.log( previousGuesses );
-            
-            if ( guessChances == 0 )
+            else
             {
-                playAgain("Sorry, you lost! You ran out of chances...");
+                console.log("That letter is not in the secret word!");
+                previousGuesses.push( letterGuess );
+                guessChances--;
+                updateNumberOfChances ( guessChances );
+                displayPreviousGuesses ( previousGuesses );
+                console.log( previousGuesses );
+                
+                if ( guessChances == 0 )
+                {
+                    playAgain("Sorry, you lost! You ran out of chances...");
+                }
+               
             }
-           
-        }
-        return secretWordUnderscore;
-    } while ( ( guessChances > 0 ) || secretWordUnderscore.includes("_") );
-}); 
-
+            return secretWordUnderscore;
+        } while ( ( guessChances > 0 ) || secretWordUnderscore.includes("_") );
+    }
+    else
+    {
+        alert("You already guessed that letter! Try again!");
+    }; 
+});
+    
 // Citation:
 //      https://www.tutorialscollection.com/faq/javascript-confirm-how-to-display-confirm-javascript-alert-with-examples/
 //      The below block of code asks the user whether they want to play again. If they choose yes, the page will reload. If they choose no, it will say thank you. 
