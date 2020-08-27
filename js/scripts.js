@@ -45,12 +45,13 @@ guessForm.addEventListener( "submit", ( event ) => {
                     playAgain("Congratulation! You guessed all the letters!");
                 }
             }
-            else
+            else 
             {
                 console.log("That letter is not in the secret word!");
                 previousGuesses.push( letterGuess );
                 guessChances--;
                 updateNumberOfChances ( guessChances );
+                displayHangmanPicture( guessChances );
                 displayPreviousGuesses ( previousGuesses );
                 console.log( previousGuesses );
                 
@@ -176,17 +177,45 @@ displayNumberOfChances( guessChances );
 
 displayPreviousGuesses( previousGuesses );
 
+displayHangmanPicture( guessChances );
+
+// Citation:
+//      https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_src2
+//      The below switch statement chooses a new png file depending on what guessChances is at
+function displayHangmanPicture( guessChances ) {
+    let hangmanImageSpot = document.getElementById( "hangmanSpot");
+    switch( guessChances ) {
+        case 6:
+            hangmanImageSpot.src = "images/0wrong.png";
+            break;
+        case 5:
+            hangmanImageSpot.src = "images/1wrong.png";
+            break;
+        case 4:
+            hangmanImageSpot.src = "images/2wrong.png";
+            break;
+        case 3:
+            hangmanImageSpot.src = "images/3wrong.png";
+            break;
+        case 2:
+            hangmanImageSpot.src = "images/4wrong.png";
+            break;
+        case 1:
+            hangmanImageSpot.src = "images/5wrong.png";
+            break;
+        case 0:
+            hangmanImageSpot.src = "images/6wrong.png";
+            break;
+    }
+
+}
 
 
 
 
 
 
-// Breakout action      -   Alert (win) OR alert (lose)
 
-// Ask if user wants to play again
-            
-// Check for duplicate entries
 
 // add CSS
 

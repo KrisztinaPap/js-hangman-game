@@ -15,8 +15,10 @@ August 26, 2020
 - [GeeksForGeeks: How to generate random number in given range using JavaScript?](https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/)
 - A huge shout-out to Zhen Liu for his assistance with the user input code block!
 - A huge shout-out to Warren Uhrich for his guidance with the custom replaceAt function! 
+- Thank you to Lindsey Graham for th wonderful png images!
 - [StackOverflow: How do I replace a character at a particular index in JavaScript?](https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript#1431113)
 - [Tutorials Collection: 2 Demos of JavaScript Confirm Alert](https://www.tutorialscollection.com/faq/javascript-confirm-how-to-display-confirm-javascript-alert-with-examples/)
+- [Image src Property](https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_src2)
 
 
 ## Trello Project Board
