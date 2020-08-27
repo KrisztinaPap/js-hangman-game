@@ -1,4 +1,4 @@
-const wordArray = [ "elephant", "automobile", "vegetable", "waterfall", "elementary", "pseudocode", "pharmacy", "thunder" ];
+const wordArray = [ "elephant", "automobile", "vegetable", "waterfall", "elementary", "pseudocode", "pharmacy", "thunder", "telephone", "organizer", "hockey", "impossible", "homework", "colonization", "spaceship", "excellent", "soup", "rollerblades", "cartography", "swordsmanship", "deforestization", "letter", "previous" ];
 
 const previousGuesses = [];
 const previousGoodGuesses = [];
@@ -162,7 +162,7 @@ function displayPreviousGuesses ( previousGuesses ) {
     // What do we want to put there?
     for ( let i = 0; i < previousGuesses.length; i++ )
     {
-        prevGuessesSPAN.textContent = `${ previousGuesses[i] } `;
+        prevGuessesSPAN.textContent = `"${ previousGuesses[i] }" `;
     }
     // Add it the HTML
     prevGuesses.appendChild( prevGuessesSPAN );    
