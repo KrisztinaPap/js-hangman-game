@@ -9,6 +9,8 @@ const previousGuesses = [];
 
 let guessChances = 6;
 
+
+
 // Citation:
 //      https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
 //      The below function works as follows: Math.random() provides a random number between 0 and 1. It then multiplies that by the number of array items and rounds it down to get a number between 0 and the number of items in the array.
@@ -16,50 +18,102 @@ function findRandomNumber (min, max) {
     return Math.floor(Math.random() * (max-min));
 }
 let randomNumber = findRandomNumber( 0, wordArray.length );
-let secretWord = wordArray[randomNumber];
+let secretWord = wordArray[randomNumber].toUpperCase();
+console.log(secretWord);
 let secretWordUnderscore = "";
 
 for ( let i = 0; i < secretWord.length; i++ ) {
     secretWordUnderscore += "_";
 };
 
-// Underscores displayed for each letter in the secretWord
-// Where do we want to put it?
-const UnderscoreSpot = document.getElementById( 'secretWordUnderscoreSpot' );
+displayWordToGuess( secretWordUnderscore );
 
-// What do we want to put there?
-let underscoreSPAN = document.createElement( 'SPAN' );
-underscoreSPAN.textContent = `${ secretWordUnderscore }`;
+displayNumberOfChances( guessChances );
 
-// Add it the HTML
-UnderscoreSpot.appendChild( underscoreSPAN );
+displayPreviousGuesses( previousGuesses );
 
-// Number of chances remaining
-// Where do we want to put it?
-const chances = document.getElementById( 'guessChances' );
 
-// What do we want to put there?
-let chancesSPAN = document.createElement( 'SPAN' );
-chancesSPAN.textContent = `${ guessChances }`;
+function displayWordToGuess( secretWordUnderscore ) {
+    // Underscores displayed for each letter in the secretWord
+    // Where do we want to put it?
+    const UnderscoreSpot = document.getElementById( 'secretWordUnderscoreSpot' );
 
-// Add it the HTML
-chances.appendChild( chancesSPAN );
+    // What do we want to put there?
+    let underscoreSPAN = document.createElement( 'SPAN' );
+    underscoreSPAN.textContent = `${ secretWordUnderscore }`;
 
-// Previously guessed letter list
-// Where do we want to put it?
-const prevGuesses = document.getElementById( 'previousGuesses' );
+    // Add it the HTML
+    UnderscoreSpot.appendChild( underscoreSPAN );
+}
 
-// What do we want to put there?
-let preGuessesSPAN = document.createElement( 'SPAN' );
-preGuessesSPAN.textContent = `${ previousGuesses }`;
 
-// Add it the HTML
-prevGuesses.appendChild( preGuessesSPAN );
+function displayNumberOfChances( guessChances ) {
+    // Number of chances remaining
+    // Where do we want to put it?
+    const chances = document.getElementById( 'guessChances' );
 
+    // What do we want to put there?
+    let chancesSPAN = document.createElement( 'SPAN' );
+    chancesSPAN.textContent = `${ guessChances }`;
+
+    // Add it the HTML
+    chances.appendChild( chancesSPAN );
+}
+
+
+function displayPreviousGuesses ( previousGuesses ) {
+    // Previously guessed letter list
+    // Where do we want to put it?
+    const prevGuesses = document.getElementById( 'previousGuesses' );
+
+    // What do we want to put there?
+    let prevGuessesSPAN = document.createElement( 'SPAN' );
+    prevGuessesSPAN.textContent = `${ previousGuesses }`;
+
+    // Add it the HTML
+    prevGuesses.appendChild( prevGuessesSPAN );
+};
 
 // User enters a letter letterGuess
+let guessForm = document.getElementById( "guess-form" );
 
-// If secretWord contains letterGuess, letter is displayed instead of underscores
+// Huge shout-out to Zhen Liu for his assistance with the below code block!
+guessForm.addEventListener( "submit", ( event ) => {
+    event.preventDefault();
+    let userInput = document.getElementById( "user-guess" ).value.toUpperCase();
+    let letterGuess = userInput;
+
+    // If secretWord contains letterGuess, letter is displayed instead of underscores
+
+    if ( secretWord.includes( letterGuess ))
+    {
+        for ( let i = 0; i < secretWord.length; i++ )
+        {
+            if ( secretWord[i] === letterGuess )
+            {
+                String.prototype.replaceAt = function(index, replacement) {
+                    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+                }
+                //secretWordUnderscore[i] = letterGuess; 
+                //secretWordUnderscore.replace( [i], letterGuess );
+                let newString = secretWordUnderscore;
+                newString.replaceAt( Number([i]), letterGuess );
+
+                console.log( secretWordUnderscore );
+            } 
+        }   
+    }
+    else
+    {
+        console.log("That letter is not in the secret word!");
+        previousGuesses.push( letterGuess );
+        displayPreviousGuesses( previousGuesses );
+        console.log( previousGuesses );
+    }
+    return secretWordUnderscore;
+});
+
+
 
 // ELSE -   letterGuess is added to wrongGuess array and gets added to Previous Guesses list on screen
 //          chances --
