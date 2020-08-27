@@ -12,11 +12,55 @@ for ( let i = 0; i < secretWord.length; i++ ) {
     secretWordUnderscore += "_";
 };
 
-displayWordToGuess( secretWordUnderscore );
+// User enters a letter letterGuess
+let guessForm = document.getElementById( "guess-form" );
 
-displayNumberOfChances( guessChances );
+// Huge shout-out to Zhen Liu for his assistance with the below code block!
+guessForm.addEventListener( "submit", ( event ) => {
+    event.preventDefault();
+    let userInput = document.getElementById( "user-guess" ).value.toUpperCase();
+    let letterGuess = userInput;
 
-displayPreviousGuesses( previousGuesses );
+    do {
+        // If secretWord contains letterGuess, letter is displayed instead of underscores
+        if ( secretWord.includes( letterGuess ))
+        {
+            for ( let i = 0; i < secretWord.length; i++ )
+            {
+                if ( secretWord[i] === letterGuess )
+                {
+                    // Citation:
+                    //      https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript#1431113
+                    // The below code uses a custom function to replace the underscore in secretWordUnderScore at the matching index
+                    // Shout-out to Warren Uhrich for his guidance!
+                    secretWordUnderscore = replaceAt( secretWordUnderscore, Number([i]), letterGuess );
+                    
+                } 
+            }   
+            displayUpdatedWordToGuess( secretWordUnderscore);
+            if ( !secretWordUnderscore.includes("_") )
+            {
+                alert("You guessed all the letters!");
+            }
+        }
+        else
+        {
+            console.log("That letter is not in the secret word!");
+            previousGuesses.push( letterGuess );
+            guessChances--;
+            updateNumberOfChances ( guessChances );
+            displayPreviousGuesses ( previousGuesses );
+            console.log( previousGuesses );
+            
+            if ( guessChances == 0 )
+            {
+                alert("You are out of chances!");
+            }
+           
+        }
+        return secretWordUnderscore;
+    } while ( ( guessChances > 0 ) || secretWordUnderscore.includes("_") );
+}); 
 
 
 
@@ -42,7 +86,7 @@ function displayWordToGuess( secretWordUnderscore ) {
 
     // What do we want to put there?
     let underscoreSPAN = document.createElement( 'SPAN' );
-    underscoreSPAN.id = "underscoreSPANId";
+    underscoreSPAN.id = "underscoreSpanId";
     underscoreSPAN.textContent = `${ secretWordUnderscore }`;
 
     // Add it the HTML
@@ -55,14 +99,25 @@ function displayUpdatedWordToGuess( secretWordUnderscore) {
     const UnderscoreSpot = document.getElementById( 'secretWordUnderscoreSpot' );
 
     // What do we want to put there?
-    let underscoreSPAN = document.getElementById( "underscoreSPANId" );
+    let underscoreSPAN = document.getElementById( "underscoreSpanId" );
     underscoreSPAN.textContent = `${ secretWordUnderscore }`;
 
     // Add it the HTML
     UnderscoreSpot.appendChild( underscoreSPAN );
 
 }
+function updateNumberOfChances ( guessChances ) {
+    // Number of chances remaining
+    // Where do we want to put it?
+    const chances = document.getElementById( 'guessChances' );
 
+    // What do we want to put there?
+    let chancesSPAN = document.getElementById( 'chancesSpanId' );
+    chancesSPAN.textContent = `${ guessChances }`;
+
+    // Add it the HTML
+    chances.appendChild( chancesSPAN );
+}
 
 function displayNumberOfChances( guessChances ) {
     // Number of chances remaining
@@ -71,12 +126,12 @@ function displayNumberOfChances( guessChances ) {
 
     // What do we want to put there?
     let chancesSPAN = document.createElement( 'SPAN' );
+    chancesSPAN.id = "chancesSpanId";
     chancesSPAN.textContent = `${ guessChances }`;
 
     // Add it the HTML
     chances.appendChild( chancesSPAN );
 }
-
 
 function displayPreviousGuesses ( previousGuesses ) {
     // Previously guessed letter list
@@ -84,7 +139,7 @@ function displayPreviousGuesses ( previousGuesses ) {
     const prevGuesses = document.getElementById( 'previousGuesses' );
     
     let prevGuessesSPAN = document.createElement( 'SPAN' );
-    prevGuessesSPAN.id = "guessSPAN";
+    prevGuessesSPAN.id = "guessSpanId";
    
     // What do we want to put there?
     for ( let i = 0; i < previousGuesses.length; i++ )
@@ -95,46 +150,16 @@ function displayPreviousGuesses ( previousGuesses ) {
     prevGuesses.appendChild( prevGuessesSPAN );    
 };
 
-// User enters a letter letterGuess
-let guessForm = document.getElementById( "guess-form" );
+displayWordToGuess( secretWordUnderscore );
 
-// Huge shout-out to Zhen Liu for his assistance with the below code block!
-guessForm.addEventListener( "submit", ( event ) => {
-    event.preventDefault();
-    let userInput = document.getElementById( "user-guess" ).value.toUpperCase();
-    let letterGuess = userInput;
+displayNumberOfChances( guessChances );
 
-    // If secretWord contains letterGuess, letter is displayed instead of underscores
-    if ( secretWord.includes( letterGuess ))
-    {
-        for ( let i = 0; i < secretWord.length; i++ )
-        {
-            if ( secretWord[i] === letterGuess )
-            {
-                // Citation:
-                //      https://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript#1431113
-                // The below code uses a custom function to replace the underscore in secretWordUnderScore at the matching index
-                // Shout-out to Warren Uhrich for his guidance!
-                secretWordUnderscore = replaceAt( secretWordUnderscore, Number([i]), letterGuess );
-                
-            } 
-        }   
-        displayUpdatedWordToGuess( secretWordUnderscore);
-    }
-    else
-    {
-        console.log("That letter is not in the secret word!");
-        previousGuesses.push( letterGuess );
-        displayPreviousGuesses ( previousGuesses );
-        console.log( previousGuesses );
-    }
-    return secretWordUnderscore;
-});
+displayPreviousGuesses( previousGuesses );
 
 
 
-// ELSE -   letterGuess is added to wrongGuess array and gets added to Previous Guesses list on screen
-//          chances --
+
+
 
 // Breakout conditions   -  If number of underscores in secretWord == 0 (WIN)
 //                          If chances == 0 (LOSE)
