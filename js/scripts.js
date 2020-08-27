@@ -32,6 +32,9 @@ displayNumberOfChances( guessChances );
 
 displayPreviousGuesses( previousGuesses );
 
+function replaceAt(target, index, replacement) {
+    return target.substr(0, index) + replacement + target.substr(index + replacement.length);
+}; 
 
 function displayWordToGuess( secretWordUnderscore ) {
     // Underscores displayed for each letter in the secretWord
@@ -85,20 +88,19 @@ guessForm.addEventListener( "submit", ( event ) => {
 
     // If secretWord contains letterGuess, letter is displayed instead of underscores
 
+
     if ( secretWord.includes( letterGuess ))
     {
         for ( let i = 0; i < secretWord.length; i++ )
         {
             if ( secretWord[i] === letterGuess )
             {
-                String.prototype.replaceAt = function(index, replacement) {
-                    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-                }
+               
                 //secretWordUnderscore[i] = letterGuess; 
                 //secretWordUnderscore.replace( [i], letterGuess );
-                let newString = secretWordUnderscore;
-                newString.replaceAt( Number([i]), letterGuess );
-
+                //let newString = secretWordUnderscore;
+                // = newString.replaceAt(  );
+                secretWordUnderscore = replaceAt( secretWordUnderscore, Number([i]), letterGuess );
                 console.log( secretWordUnderscore );
             } 
         }   
