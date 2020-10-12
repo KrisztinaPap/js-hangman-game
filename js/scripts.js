@@ -58,12 +58,14 @@ guessForm.addEventListener( "submit", ( event ) => {
                 }
                
             }
+            guessForm.reset();
             return secretWordUnderscore;
         } while ( ( guessChances > 0 ) || secretWordUnderscore.includes("_") );
     }
     else
     {
         alert("You already guessed that letter! Try again!");
+        guessForm.reset();
     }; 
 });
     
@@ -167,6 +169,11 @@ function displayPreviousGuesses ( previousGuesses ) {
     // Add it the HTML
     prevGuesses.appendChild( prevGuessesSPAN );    
 };
+
+//      focus on user input field after adding a task
+function focusUserInput() { 
+    document.getElementById("guess-form").focus(); 
+} 
 
 displayWordToGuess( secretWordUnderscore );
 
